@@ -11,8 +11,8 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: "vagrant-private-key", keyFileVariable: 'keyfile')]) {
                 sh 'ansible-playbook --private-key=${keyfile} -i hosts.ini playbook.yml'
+                }
             }
-        }
-       
+        } 
     }
-}   
+}
