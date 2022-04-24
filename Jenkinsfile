@@ -1,14 +1,20 @@
 pipeline {
+    agent any
+
     parameters {
         choice choices: ['qa', 'prod'], description: 'Select environment for deployment', name: 'DEPLOY_TO'
+    
+        string(name: 'branch',
+            defaultValue: '',
+            description: 'Copy artifact from branch'
+        )
     }
-
-    agent any
 
     stages {
         stage('Copy Artifact') {
             steps {
-                copyArtifacts filter: 'sample', fingerprintArtifacts: true, projectName: 'sample', selector: lastSuccessful()
+                copyArtifacts filter: 'sample', fingerprintArtifacts: true, 
+                projectName: "sample-multibranch/${params.branch}", selector: upstream()
             }
         }
         stage('Deliver') {
