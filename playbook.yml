@@ -8,6 +8,7 @@
           mode: "0700"
           
       - name: copy artifact
+        become: true
         ansible.builtin.copy:
             src: sample
             dest: /home/vagrant/sample
