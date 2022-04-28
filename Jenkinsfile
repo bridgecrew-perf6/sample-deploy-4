@@ -14,7 +14,7 @@ pipeline {
         stage('Copy Artifact') {
             steps {
                 copyArtifacts filter: 'sample', fingerprintArtifacts: true, 
-                projectName: "sample-multibranch/${params.branch}", selector: upstream()
+                projectName: "sample-multibranch/${params.branch}", selector: lastSuccessful()
             }
         }
         stage('Deliver') {
