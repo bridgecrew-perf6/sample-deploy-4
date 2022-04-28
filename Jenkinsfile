@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     parameters {
-        choice choices: ['qa', 'prod'], description: 'Select environment for deployment', name: 'DEPLOY_TO'
+        choice choices: ['qa', 'prod', 'cloud'], description: 'Select environment for deployment', name: 'DEPLOY_TO'
     
         string(name: 'branch',
-            defaultValue: '',
+             defaultValue: '',
             description: 'Copy artifact from branch'
         )
     }
